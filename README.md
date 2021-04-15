@@ -72,5 +72,17 @@ export default ErrorBoundry;
 
 #### Deployment
 
-- [CRA deployemnt](https://create-react-app.dev/docs/deployment/#github-pages-https-pagesgithubcom)
+- [CRA deployemnt](https://create-react-app.dev/docs/deployment/#github-pages-https-pagesgithubcom) instruction for CL
 - [Page deployed](https://sandracoburn.github.io/robofriends/) with GitHub pages
+
+#### State Management
+
+- React hooks
+  = Redux 3 principles
+  - Single source of truth
+  - State is read only - immutable
+  - Changes using pure functions
+- Redux Flux Pattern:
+  - Action -> Dispatcher -> Store -> View
+- MVC Pattern
+  - Action -> Controller -> Model -> View
