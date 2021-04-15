@@ -72,7 +72,7 @@ export default ErrorBoundry;
 
 #### Deployment
 
-- [CRA deployemnt](https://create-react-app.dev/docs/deployment/#github-pages-https-pagesgithubcom) instruction for CL
+- [CRA deployemnt](https://create-react-app.dev/docs/deployment/#github-pages-https-pagesgithubcom) instruction for github pages CL deployment
 - [Page deployed](https://sandracoburn.github.io/robofriends/) with GitHub pages
 
 #### State Management
@@ -86,3 +86,9 @@ export default ErrorBoundry;
   - Action -> Dispatcher -> Store -> View
 - MVC Pattern
   - Action -> Controller -> Model -> View
+    To install:
+
+```
+npm install redux
+npm install react-redux
+```
