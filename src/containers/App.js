@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
 import './App.css';
 
-const App = () => {
-  const [robots, setRobots] = useState([]);
-  const [searchfield, setSearchField] = useState('');
+import { requestRobots, setSearchField } from '../state/actions';
+
+const App = (props) => {
+  console.log('props', props);
+  // const [robots, setRobots] = useState([]);
+  // const [searchfield, setSearchField] = useState('');
+
+  const { searchField, onSearchChange, isPending } = props;
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users') //fetch is a method on window object
-      .then((response) => response.json())
-      .then((users) => {
-        setRobots(users);
-      });
+    props.onRequestRobots();
   }, []);
 
-  const onSearchChange = (event) => {
-    setSearchField(event.target.value);
-  };
+  // const onSearchChange = (event) => {
+  //   setSearchField(event.target.value);
+  // };
 
-  const filteredRobots = robots.filter((robot) => {
-    return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+  const filteredRobots = props.robots.filter((robot) => {
+    return robot.name.toLowerCase().includes(searchField.toLowerCase());
   });
-  return !robots.length ? (
+  return isPending ? (
     <h1>Loading...</h1>
   ) : (
     <div className="tc">
@@ -39,4 +41,20 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    searchField: state.searchRobots.searchField,
+    robots: state.requestRobots.robots,
+    isPending: state.requestRobots.isPending,
+    error: state.requestRobots.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
