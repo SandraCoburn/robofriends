@@ -1,6 +1,6 @@
 # robofriends
 
-Tutorial for React
+Tutorial for React - Junior to Senior Web Developer Roadmap
 To run the project:
 
 1. Clone this repo
@@ -78,7 +78,7 @@ export default ErrorBoundry;
 #### State Management
 
 - React hooks
-  = Redux 3 principles
+  - Redux 3 principles
   - Single source of truth
   - State is read only - immutable
   - Changes using pure functions
@@ -120,3 +120,8 @@ Utility Libraries:
 - [Webpack](https://webpack.js.org/) is a static module bundler. It's main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packagging. When webpack processes your application, it internally builds a dependency graph which maps every module your project needs and genertes one or more bundles.
 - [Parcel](https://parceljs.org/) is a fast, zero configuratin web application bundler. It has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.
 - [Rollup.js](https://rollupjs.org/guide/en/) is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application.
+
+### PWA - Progressive Web App
+
+- A progressive web application is a type of application software delivered through the web, built using common web technologies including HTML, CSS and JavaScript. It is intended to work on any platform that uses a standards-compliant browser, including both desktop and mobile devices
+- PWAs can: Work offline or in poor network conditions, be installed on the user's device and accessed via a home screen icon like a native app.
