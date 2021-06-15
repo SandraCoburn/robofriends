@@ -125,3 +125,68 @@ Utility Libraries:
 
 - A progressive web application is a type of application software delivered through the web, built using common web technologies including HTML, CSS and JavaScript. It is intended to work on any platform that uses a standards-compliant browser, including both desktop and mobile devices
 - PWAs can: Work offline or in poor network conditions, be installed on the user's device and accessed via a home screen icon like a native app.
+
+#### Code optimization tips
+
+- To check the performance of a website, open developer tools and do a recording on the performance tab.
+
+  - Timeline of recording shows what is loading on the page. Green line shows the first paint loading. The blue line shows the DOM content loaded and the red line shows the load event when the page finished loading.
+  - Summary Tab: yellow tab shows the javascript scripting including the parse and compile and shows how long it took for the browser to make the javascript to work.
+
+- Avoid animation as much as possible specially in mobile apps.
+- Test your app on [WebPageTest](https://www.webpagetest.org/breakdown.php?test=130129_KW_B7P&run=1&cached=0) Content Breackdown to see how it will perfome in mobile devices.
+
+##### Code Splitting
+
+- Allows us to reduce the amount of work the browser has to do at time of execution
+
+  - ES2020: Dynamic import()
+
+    - It only imports the file or component when is needed by using the `import` word inside if statements
+      ex 1:
+
+    ```
+    this.state = { route: 'page1', component: null}
+
+    onRouteChange = (route) => {
+      if(route === "page1"){
+        this.setState({route: route})
+      } else if(route === "page2"){
+        import('./components/Page2').then({
+          this.setState({route: route, component: Page2.default})
+        })
+      }
+    }
+    ```
+
+    ex 2 Higher Order Async component:
+
+  ```
+  import React, {component} from "react
+
+  export default function asyncComponent(importComponent){
+    class AsyncComponent extends Component {
+      constructor(props){
+        super(props);
+        this.state = {
+          component: null
+        }
+      }
+      async componentDidMount(){
+        const {default: component} = await importComponent()
+        this.setState({
+          component: component
+        })
+      }
+      render(){
+        const Component = this .state.component;
+        return Component ? <Component {...this.props} /> : null;
+      }
+    }
+    return AsyncComponent
+  }
+
+  ```
+
+- `React.Lazy()` code splitting
+- Production Build: `npm run build`
