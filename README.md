@@ -1,6 +1,6 @@
 # robofriends
 
-Tutorial for React
+Tutorial for React - Junior to Senior Web Developer Roadmap
 To run the project:
 
 1. Clone this repo
@@ -78,7 +78,7 @@ export default ErrorBoundry;
 #### State Management
 
 - React hooks
-  = Redux 3 principles
+  - Redux 3 principles
   - Single source of truth
   - State is read only - immutable
   - Changes using pure functions
@@ -120,3 +120,73 @@ Utility Libraries:
 - [Webpack](https://webpack.js.org/) is a static module bundler. It's main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packagging. When webpack processes your application, it internally builds a dependency graph which maps every module your project needs and genertes one or more bundles.
 - [Parcel](https://parceljs.org/) is a fast, zero configuratin web application bundler. It has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.
 - [Rollup.js](https://rollupjs.org/guide/en/) is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application.
+
+### PWA - Progressive Web App
+
+- A progressive web application is a type of application software delivered through the web, built using common web technologies including HTML, CSS and JavaScript. It is intended to work on any platform that uses a standards-compliant browser, including both desktop and mobile devices
+- PWAs can: Work offline or in poor network conditions, be installed on the user's device and accessed via a home screen icon like a native app.
+
+#### Code optimization tips
+
+- To check the performance of a website, open developer tools and do a recording on the performance tab.
+
+  - Timeline of recording shows what is loading on the page. Green line shows the first paint loading. The blue line shows the DOM content loaded and the red line shows the load event when the page finished loading.
+  - Summary Tab: yellow tab shows the javascript scripting including the parse and compile and shows how long it took for the browser to make the javascript to work.
+
+- Avoid animation as much as possible specially in mobile apps.
+- Test your app on [WebPageTest](https://www.webpagetest.org/breakdown.php?test=130129_KW_B7P&run=1&cached=0) Content Breackdown to see how it will perfome in mobile devices.
+
+##### Code Splitting
+
+- Allows us to reduce the amount of work the browser has to do at time of execution
+
+  - ES2020: Dynamic import()
+
+    - It only imports the file or component when is needed by using the `import` word inside if statements
+      ex 1:
+
+    ```
+    this.state = { route: 'page1', component: null}
+
+    onRouteChange = (route) => {
+      if(route === "page1"){
+        this.setState({route: route})
+      } else if(route === "page2"){
+        import('./components/Page2').then({
+          this.setState({route: route, component: Page2.default})
+        })
+      }
+    }
+    ```
+
+    ex 2 Higher Order Async component:
+
+  ```
+  import React, {component} from "react
+
+  export default function asyncComponent(importComponent){
+    class AsyncComponent extends Component {
+      constructor(props){
+        super(props);
+        this.state = {
+          component: null
+        }
+      }
+      async componentDidMount(){
+        const {default: component} = await importComponent()
+        this.setState({
+          component: component
+        })
+      }
+      render(){
+        const Component = this .state.component;
+        return Component ? <Component {...this.props} /> : null;
+      }
+    }
+    return AsyncComponent
+  }
+
+  ```
+
+- `React.Lazy()` code splitting
+- Production Build: `npm run build`
